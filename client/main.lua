@@ -326,7 +326,15 @@ CreateThread(function()
 			end
 
 			if not PickingLock and IsDisabledControlJustReleased(0, 38) then
+				if ClosestDoor.auto and GlobalState.blackOut then
+					lib.notify({
+						title = 'Unable to Open',
+						description = 'Requires Power',
+						type = 'error'
+					})
+				else
 				useClosestDoor()
+				end
 			end
 		elseif showUI then
 			lib.hideTextUI()
